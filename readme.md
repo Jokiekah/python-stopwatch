@@ -1,4 +1,4 @@
-# Project Titgit remote add origin https://github.com/Jokiekah/python-stopwatch.gitle: Python Stopwatch
+# Project Title: Python Stopwatch
 
 ## Features
 - Has a graphic user interface (GUI) that display all necessary data and controls
