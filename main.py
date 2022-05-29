@@ -87,3 +87,19 @@ class MainWindow(QMainWindow):
         # Merge the minute, second, and millisec values
         text = f"{self.minutes}m : {self.seconds}s : {self.millisec}"
         self.counterlabel.setText('<h2>' + text + '</h2>')
+
+    def counterUI(self):
+        self.counterlabel = QLabel(self)
+        self.counterlabel.setFrameStyle(QFrame.Panel | QFrame.Plain)
+        self.counterlabel.setFixedSize(int(self.window_width * 0.75), int(self.window_height * 0.10))
+        self.counterlabel.move(int(self.rect().width() / 2 - self.counterlabel.rect().width() / 2), 100)
+        # self.move(QApplication.desktop().screen().rect().center() - self.rect().center())
+        self.counterlabel.setFont(QFont('Arial', 20, QFont.Bold))
+        self.counterlabel.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+
+    def startUI(self):
+        self.startbutton = QPushButton("START", self)
+        # self.startbutton.setGeometry(75, 250, 300, 50)
+        self.startbutton.setFixedSize(int(self.window_width * 0.55), int(self.window_height * 0.07))
+        self.startbutton.move(int(self.rect().width() / 2 - self.startbutton.rect().width() / 2), 230)
+        self.startbutton.pressed.connect(self._startEvent)
