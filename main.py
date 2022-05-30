@@ -103,5 +103,3 @@ class MainWindow(QMainWindow):
         self.startbutton.setFixedSize(int(self.window_width * 0.55), int(self.window_height * 0.07))
         self.startbutton.move(int(self.rect().width() / 2 - self.startbutton.rect().width() / 2), 230)
         self.startbutton.pressed.connect(self._startEvent)
-    
-    
