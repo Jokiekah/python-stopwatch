@@ -103,3 +103,30 @@ class MainWindow(QMainWindow):
         self.startbutton.setFixedSize(int(self.window_width * 0.55), int(self.window_height * 0.07))
         self.startbutton.move(int(self.rect().width() / 2 - self.startbutton.rect().width() / 2), 230)
         self.startbutton.pressed.connect(self._startEvent)
+    def _startEvent(self):
+        if self.startbutton.text() == "STOP":
+            self.startbutton.setText("RESUME")
+            self.Start = False
+        else:
+            self.Start = True
+            self.startbutton.setText('STOP')
+
+    def resetUI(self):
+        self.resetbutton = QPushButton("RESET", self)
+        # self.resetbutton.setGeometry(75, 310, 300, 50)
+        self.resetbutton.setFixedSize(int(self.window_width * 0.55), int(self.window_height * 0.07))
+        self.resetbutton.move(int(self.rect().width() / 2 - self.startbutton.rect().width() / 2), 300)
+        self.resetbutton.pressed.connect(self._resetEvent)
+
+    def _resetEvent(self):
+        self.Start = False
+        self.counter = 0
+        self.seconds = '00'
+        self.minutes = '00'
+        self.millisec = '00'
+        self.col_counter = 0
+
+        self.datatable.clearContents()
+
+        self.counterlabel.setText(str(self.counter))
+        self.startbutton.setText("Start")
