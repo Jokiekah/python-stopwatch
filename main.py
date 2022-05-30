@@ -152,3 +152,34 @@ class MainWindow(QMainWindow):
                     self.datatable.setItem(self.col_counter, 2, QTableWidgetItem(f"{self.col_counter}"))
 
             self.col_counter += 1
+            
+    def tableUI(self):
+        self.datatable = QTableWidget(self)
+        self.datatable.setRowCount(10)
+        self.datatable.setColumnCount(3)
+        self.datatable.setFixedSize(int(self.window_width * 0.75), 250)
+
+        # int(self.window_height * 0.10)
+        self.datatable.move(int(self.rect().width() / 2 - self.counterlabel.rect().width() / 2), 440)
+
+        self.datatable.verticalHeader().setVisible(False)
+        self.datatable.setHorizontalHeaderLabels(["Split", "Time", "Length"])
+        self.datatable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.datatable.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+
+        # Make the first column different
+        self.datatable.horizontalHeader().setSectionsClickable
+
+        # make the table read-only
+        self.datatable.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+
+# Main function for the stopwatch app
+def stopwatch():
+    App = QApplication([])
+    window = MainWindow()
+    window.show()
+
+    sys.exit(App.exec())
+
+if __name__ == "__main__":
+    stopwatch()
