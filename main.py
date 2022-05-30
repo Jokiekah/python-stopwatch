@@ -130,3 +130,25 @@ class MainWindow(QMainWindow):
 
         self.counterlabel.setText(str(self.counter))
         self.startbutton.setText("Start")
+    def splitUI(self):
+        self.splitbutton = QPushButton("SPLIT (Lap)", self)
+        # self.resetbutton.setGeometry(75, 310, 300, 50)
+        self.splitbutton.setFixedSize(int(self.window_width * 0.55), int(self.window_height * 0.07))
+        self.splitbutton.move(int(self.rect().width() / 2 - self.splitbutton.rect().width() / 2), 370)
+        self.splitbutton.pressed.connect(self._splitEvent)
+
+    def _splitEvent(self):
+        if self.Start:
+            self.datatable.setItem(self.col_counter, 0, QTableWidgetItem(str(self.col_counter + 1)))
+            self.datatable.setItem(self.col_counter, 1, QTableWidgetItem(f"{self.minutes} : {self.seconds} : {self.millisec}"))
+
+            # Compute time difference between the current and the previous
+            if self.col_counter == 0:
+                self.datatable.setItem(self.col_counter, 2, QTableWidgetItem(f"{self.minutes} : {self.seconds} : {self.millisec}"))
+            else:
+                time_length = self.datatable.item(self.col_counter - 1, 1)
+                if time_length is not None and time_length.text() != '':
+                    print(time_length.text())
+                    self.datatable.setItem(self.col_counter, 2, QTableWidgetItem(f"{self.col_counter}"))
+
+            self.col_counter += 1
